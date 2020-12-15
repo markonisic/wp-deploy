@@ -1,7 +1,7 @@
     #!/bin/bash 
     # A script which creates a swap file, sets permissions and installs Wordpress with LEMP stack(Nginx, MariaDB, PHP)
     sudo apt update && sudo apt upgrade -y
-    sudo fallocate -l 2G /swapfile
+    sudo fallocate -l 4G /swapfile
     sudo chmod 600 /swapfile
     sudo mkswap /swapfile
     sudo swapon /swapfile
