@@ -6,7 +6,7 @@
     sudo mkswap /swapfile
     sudo swapon /swapfile
     sudo apt instal nginx mariadb-server -y
-    sudo apt install php-curl php-gd php-intl php-mysql php-curl php-mbstring php-soap php-xml php-xmlrpc php-fpm php-zip -y
+    sudo apt install php php-common php-gd php-intl php-mysql php-curl php-mbstring php-soap php-xml php-xmlrpc php-fpm php-zip -y
     sudo systemctl enable nginx.service
     sudo systemctl enable mariadb.service
     sudo mkdir /var/www/html/wordpress
