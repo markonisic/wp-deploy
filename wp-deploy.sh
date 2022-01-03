@@ -3,14 +3,14 @@
     sudo apt update && sudo apt upgrade -y
     sudo fallocate -l 4G /swapfile
     sudo chmod 600 /swapfile
-    sudo mkswap ~/swapfile
-    sudo swapon ~/swapfile
-    sudo apt instal nginx mariadb-server -y
+    sudo mkswap /swapfile
+    sudo swapon /swapfile
+    sudo apt install nginx mariadb-server -y
     sudo apt install php php-common php-gd php-intl php-mysql php-curl php-mbstring php-soap php-xml php-xmlrpc php-fpm php-zip -y
     sudo systemctl enable nginx.service
     sudo systemctl enable mariadb.service
     sudo mkdir /var/www/html/wordpress
-    sudo cd ~/var/www/html/wordpress
+    sudo cd /var/www/html/wordpress
     sudo wget https://wordpress.org/latest.tar.gz
     sudo tar -xvzf latest.tar.gz
     sudo cd /wordpress
@@ -20,7 +20,7 @@
     sudo rm -r /wordpress
     sudo rm latest.tar.gz
     sudo cd
-    sudo find ~/var/www/html/wordpress -type d -exec chmod 755 {} \;
-    sudo find ~/var/www/html/wordpress -type f -exec chmod 644 {} \;
+    sudo find /var/www/html/wordpress -type d -exec chmod 755 {} \;
+    sudo find /var/www/html/wordpress -type f -exec chmod 644 {} \;
     sudo chown -R www-data:www-data ~/var/www/html/wordpress
 
