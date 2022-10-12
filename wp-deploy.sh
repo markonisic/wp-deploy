@@ -8,6 +8,14 @@ DB_USER="test_user"
 DB_PASS="Test.Pass1"
 
 #### Static variables ####
+SALT=$(curl -L https://api.wordpress.org/secret-key/1.1/salt/)
+STRING='put your unique phrase here'
+DEFINE_DB="define( 'DB_NAME', '$DB_NAME' );"
+DEFINE_DB_USER="define( 'DB_USER', '$DB_USER' );"
+DEFINE_DB_PASS="define( 'DB_PASSWORD', '$DB_PASS' );"
+DB_STRING='database_name_here'
+USERNAME_STRING='username_here'
+PASS_STRING='password_here'
 
 #### System update ####
 sudo apt update && sudo apt upgrade -y
@@ -50,4 +58,11 @@ sudo -i mysql <<QUERY
 CREATE DATABASE $DB_NAME;
 GRANT ALL ON $DB_NAME. * TO '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASS';
 QUERY
+
+##### WP Config edit and SALT keys insert ####
+
+printf '%s\n' "g/$STRING/d" a "$SALT" . w | ed -s wp-config-sample.php
+printf '%s\n' "g/$DB_STRING/d" a "$DEFINE_DB" . w | ed -s wp-config-sample.php
+printf '%s\n' "g/$USERNAME_STRING/d" a "$DEFINE_DB_USER" . w | ed -s wp-config-sample.php
+printf '%s\n' "g/$PASS_STRING/d" a "$DEFINE_DB_PASS" . w | ed -s wp-config-sample.php
 
