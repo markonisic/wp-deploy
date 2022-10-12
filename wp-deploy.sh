@@ -8,6 +8,7 @@
 		DB_PASS="Test.Pass1"
 
 		#### Static variables ####
+		DB_CREATE="$(CREATE DATABASE $DB_NAME; GRANT ALL ON $DB_NAME. * TO '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASS')"
 		
 		#### System update ####
     sudo apt update && sudo apt upgrade -y
@@ -44,3 +45,6 @@
     sudo find /var/www/html/wordpress -type d -exec chmod 755 {} \;
     sudo find /var/www/html/wordpress -type f -exec chmod 644 {} \;
     sudo chown -R www-data:www-data /var/www/html/wordpress
+		
+		#### Wordpress DB setup ####
+		mysql -u root -p -e <<< "$DB_CREATE"
