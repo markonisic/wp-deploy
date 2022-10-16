@@ -6,7 +6,7 @@
 DB_NAME="test_wp"
 DB_USER="test_user"
 DB_PASS="Test.Pass1"
-WP_DIR="wordpress"
+WP_DIR='wordpress'
 
 ##### Static variables #####
 SALT=$(curl -L https://api.wordpress.org/secret-key/1.1/salt/)
@@ -36,7 +36,7 @@ sudo systemctl enable nginx.service
 sudo systemctl enable mariadb.service
 
 ##### Wordpress download #####
-mkdir /var/www/html/$WP_DIR
+sudo mkdir -p /var/www/html/$WP_DIR
 cd /var/www/html/$WP_DIR
 sudo wget https://wordpress.org/latest.tar.gz
 sudo tar -xvzf latest.tar.gz
@@ -61,7 +61,7 @@ printf '%s\n' "g/$DB_STRING/d" a "$DEFINE_DB" . w | ed -s wp-config-sample.php
 printf '%s\n' "g/$USERNAME_STRING/d" a "$DEFINE_DB_USER" . w | ed -s wp-config-sample.php
 printf '%s\n' "g/$PASS_STRING/d" a "$DEFINE_DB_PASS" . w | ed -s wp-config-sample.php
 
-mv wp-config-sample.php wp-config.php
+sudo mv wp-config-sample.php wp-config.php
 
 ##### Wordpress DB setup #####
 sudo -i mysql <<QUERY
@@ -70,6 +70,6 @@ GRANT ALL ON $DB_NAME. * TO '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASS';
 QUERY
 
 ##### Add Nginx server block config #####
-cp /home/$USER/wp-deploy/wordpress.conf /etc/nginx/sites-available/
-ln -s /etc/nginx/sites-available/wordpress.conf /etc/nginx/sites-enabled/
+sudo cp /home/$USER/wp-deploy/wordpress.conf /etc/nginx/sites-available/
+sudo ln -s /etc/nginx/sites-available/wordpress.conf /etc/nginx/sites-enabled/
 sudo systemctl restart nginx.service
