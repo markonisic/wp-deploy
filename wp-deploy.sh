@@ -69,6 +69,6 @@ GRANT ALL ON $DB_NAME. * TO '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASS';
 QUERY
 
 ##### Add Nginx server block config #####
-cp /home/$USER/wp-deploy/wordpress.conf /etc/nginx/sites-avaliable/
-ln -s /etc/nginx/sites-avaliable/wordpress.conf /etc/nginx/sites-enabled/
+cp /home/$USER/wp-deploy/wordpress.conf /etc/nginx/sites-available/
+ln -s /etc/nginx/sites-available/wordpress.conf /etc/nginx/sites-enabled/
 sudo systemctl restart nginx.service
