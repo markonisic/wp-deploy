@@ -1,7 +1,7 @@
 # Overview
 
 This is a bash auto-install script which installs Wordpress and
-LEMP stack automatically on your Linux server.
+LEMP stack automatically on your Linux server. Currently it works on Debian/Ubuntu based distros.
 
 Script features:
 
@@ -23,8 +23,12 @@ it writes the newly generated SALT keys too.
 privileges.
 You can apply the `chmod +x` on the script file to run it as an executable or run it with:
 `bash wp-deploy.sh`
+
 - Change the following variables to suit your needs:
+
 `DB_NAME="test_wp"
 DB_USER="test_user"
-DB_PASS="Test.Pass1"`
-After the script has finished, run the sudo mysql_secure_installation to secure the mysql login. That step I still haven't automated.
+DB_PASS="Test.Pass1"
+WP_DIR="wordpress"`
+
+After the script has finished, run the sudo mysql_secure_installation to secure the mysql login. That step I still haven't automated yet.

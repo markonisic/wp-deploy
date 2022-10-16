@@ -6,6 +6,7 @@
 DB_NAME="test_wp"
 DB_USER="test_user"
 DB_PASS="Test.Pass1"
+WP_DIR="wordpress"
 
 ##### Static variables #####
 SALT=$(curl -L https://api.wordpress.org/secret-key/1.1/salt/)
@@ -35,13 +36,13 @@ sudo systemctl enable nginx.service
 sudo systemctl enable mariadb.service
 
 ##### Wordpress download #####
-mkdir /var/www/html/wordpress
-cd /var/www/html/wordpress
+mkdir /var/www/html/$WP_DIR
+cd /var/www/html/$WP_DIR
 sudo wget https://wordpress.org/latest.tar.gz
 sudo tar -xvzf latest.tar.gz
 
 ##### Removing the latest.tar file and xmlrpc #####
-cd wordpress/
+cd $WP_DIR/
 sudo mv * ..
 cd ..
 sudo rm xmlrpc.php
@@ -49,9 +50,9 @@ sudo rm -r wordpress/
 sudo rm latest.tar.gz
 
 ##### Configuring file permissions #####
-sudo find /var/www/html/wordpress -type d -exec chmod 755 {} \;
-sudo find /var/www/html/wordpress -type f -exec chmod 644 {} \;
-sudo chown -R www-data:www-data /var/www/html/wordpress
+sudo find /var/www/html/$WP_DIR -type d -exec chmod 755 {} \;
+sudo find /var/www/html/$WP_DIR -type f -exec chmod 644 {} \;
+sudo chown -R www-data:www-data /var/www/html/$WP_DIR
 
 ##### WP Config edit and SALT keys insert ####
 
